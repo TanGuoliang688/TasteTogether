@@ -1,0 +1,139 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: 200rpx;
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingText {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.image {
+  width: 100%;
+  height: 560rpx;
+}
+
+.body {
+  background: $color-bg-card;
+  margin: -32rpx $page-padding 0;
+  position: relative;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  flex: 1;
+  margin-right: $spacing-md;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: baseline;
+}
+
+.priceSymbol {
+  font-size: $font-size-md;
+  color: $color-price;
+  font-weight: $font-weight-semibold;
+}
+
+.price {
+  font-size: $font-size-xxl;
+  color: $color-price;
+  font-weight: $font-weight-bold;
+}
+
+.tags {
+  margin-top: $spacing-md;
+  display: flex;
+}
+
+.tag {
+  font-size: $font-size-xs;
+  color: $color-tag-text;
+  background: $color-tag-bg;
+  border-radius: $radius-xs;
+  padding: 6rpx 16rpx;
+  margin-right: $spacing-sm;
+}
+
+.desc {
+  display: block;
+  margin-top: $spacing-lg;
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+}
+
+.sales {
+  display: block;
+  margin-top: $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $page-padding;
+  background: $color-bg-card;
+  box-shadow: $shadow-float;
+}
+
+.qtyBox {
+  display: flex;
+  align-items: center;
+}
+
+.qtyLabel {
+  margin-right: $spacing-md;
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.addBtn {
+  height: 80rpx;
+  padding: 0 $spacing-xl;
+  border-radius: $radius-button;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.addText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}

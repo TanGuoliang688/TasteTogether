@@ -1,0 +1,362 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: $color-bg-page;
+}
+
+.header {
+  padding: $spacing-lg $page-padding $spacing-md;
+  background: $color-bg-card;
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shopName {
+  display: block;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.tableInfo {
+  display: block;
+  margin-top: 4rpx;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.headerBadge {
+  min-width: 48rpx;
+  height: 48rpx;
+  padding: 0 12rpx;
+  border-radius: $radius-round;
+  background: $color-tag-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerBadgeText {
+  font-size: $font-size-sm;
+  color: $color-tag-text;
+  font-weight: $font-weight-semibold;
+}
+
+.banner {
+  height: 300rpx;
+  margin: $spacing-md $page-padding 0;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.bannerItem {
+  position: relative;
+  height: 300rpx;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 300rpx;
+}
+
+.bannerMask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120rpx;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.bannerTitle {
+  position: absolute;
+  left: $spacing-lg;
+  bottom: $spacing-md;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-white;
+}
+
+.categories {
+  @include scroll-x-container;
+  padding: $spacing-md $page-padding 0;
+}
+
+.categoryItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64rpx;
+  padding: 0 $spacing-lg;
+  margin-right: $spacing-sm;
+  border-radius: $radius-button;
+  background: $color-bg-card;
+  white-space: nowrap;
+  transition: all $transition-base;
+}
+
+.categoryItemActive {
+  background: $color-primary;
+}
+
+.categoryText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.categoryTextActive {
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.dishList {
+  flex: 1;
+  min-height: 0;
+  padding: $spacing-md $page-padding 0;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96rpx 0;
+}
+
+.emptyText {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.listBottom {
+  height: 24rpx;
+}
+
+.cartBar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 $page-padding $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-button;
+  background: #2e2a26;
+  box-shadow: $shadow-float;
+}
+
+.cartBarLeft {
+  display: flex;
+  align-items: center;
+}
+
+.cartBadge {
+  min-width: 48rpx;
+  height: 48rpx;
+  padding: 0 12rpx;
+  border-radius: $radius-round;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartBadgeText {
+  font-size: $font-size-sm;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.cartPriceWrap {
+  margin-left: $spacing-sm;
+  display: flex;
+  align-items: baseline;
+}
+
+.cartTotalLabel {
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cartTotal {
+  margin-left: $spacing-sm;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+}
+
+.checkoutBtn {
+  height: 72rpx;
+  padding: 0 $spacing-md;
+  border-radius: $radius-button;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.checkoutText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $color-bg-card;
+  border-radius: $radius-lg $radius-lg 0 0;
+  padding: $spacing-lg $page-padding $spacing-lg;
+  z-index: 101;
+  transform: translateY(100%);
+  transition: transform $transition-base;
+}
+
+.drawerVisible {
+  transform: translateY(0);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+}
+
+.drawerTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.clearBtn {
+  padding: 8rpx $spacing-sm;
+}
+
+.clearText {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.drawerList {
+  max-height: 480rpx;
+}
+
+.drawerItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-sm 0;
+}
+
+.drawerImage {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.drawerItemInfo {
+  flex: 1;
+  margin-left: $spacing-md;
+  min-width: 0;
+}
+
+.drawerItemName {
+  display: block;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.drawerItemPrice {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-md;
+  color: $color-price;
+  font-weight: $font-weight-semibold;
+}
+
+.drawerEmpty {
+  padding: 64rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.drawerEmptyText {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.drawerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-md;
+  border-top: 1rpx solid $color-divider;
+}
+
+.drawerTotal {
+  display: flex;
+  align-items: baseline;
+}
+
+.drawerTotalLabel {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.drawerTotalPrice {
+  margin-left: $spacing-sm;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-price;
+}
+
+.submitBtn {
+  height: 80rpx;
+  padding: 0 $spacing-xl;
+  border-radius: $radius-button;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+.submitBtnDisabled {
+  opacity: 0.5;
+}
+
+.submitText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}

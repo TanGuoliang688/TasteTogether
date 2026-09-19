@@ -1,0 +1,185 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-page;
+}
+
+.formBar {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md $page-padding;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  height: 80rpx;
+  background: $color-bg-card;
+  border-radius: $radius-md;
+  padding: 0 $spacing-md;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  color: $color-text-disabled;
+}
+
+.submitBtn {
+  margin-left: $spacing-sm;
+  height: 80rpx;
+  padding: 0 $spacing-lg;
+  border-radius: $radius-button;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.submitText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.cancelEdit {
+  padding: 0 $page-padding $spacing-sm;
+  flex-shrink: 0;
+}
+
+.cancelEditText {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  padding: 0 $page-padding;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  background: $color-bg-card;
+  border-radius: $radius-md;
+  padding: $spacing-sm;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-sm;
+}
+
+.orderBtns {
+  display: flex;
+  flex-direction: column;
+  margin-right: $spacing-sm;
+}
+
+.orderBtn {
+  width: 56rpx;
+  height: 44rpx;
+  border-radius: $radius-sm;
+  background: $color-bg-hover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacing-xs;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.orderBtnDisabled {
+  opacity: 0.35;
+}
+
+.orderBtnText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  line-height: 1;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  display: block;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  font-weight: $font-weight-medium;
+  @include text-ellipsis;
+}
+
+.count {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: $spacing-sm;
+}
+
+.editBtn,
+.deleteBtn {
+  height: 56rpx;
+  padding: 0 $spacing-md;
+  border-radius: $radius-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.editBtn {
+  background: $color-tag-bg;
+  margin-right: $spacing-sm;
+}
+
+.editText {
+  font-size: $font-size-sm;
+  color: $color-tag-text;
+}
+
+.deleteBtn {
+  background: rgba(245, 63, 63, 0.1);
+}
+
+.deleteText {
+  font-size: $font-size-sm;
+  color: $color-error;
+}
+
+.empty {
+  padding: 128rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.emptyText {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.listBottom {
+  height: 24rpx;
+}

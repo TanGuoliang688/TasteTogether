@@ -1,0 +1,154 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  display: flex;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+
+  &:active {
+    opacity: 0.95;
+  }
+}
+
+.imageWrap {
+  position: relative;
+  width: 180rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: $radius-md;
+}
+
+.soldOutMask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soldOutText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.info {
+  flex: 1;
+  margin-left: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.desc {
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  @include text-ellipsis-multi(1);
+}
+
+.tags {
+  margin-top: $spacing-xs;
+  display: flex;
+}
+
+.tag {
+  font-size: $font-size-xs;
+  color: $color-tag-text;
+  background: $color-tag-bg;
+  border-radius: $radius-xs;
+  padding: 4rpx 12rpx;
+  margin-right: $spacing-xs;
+}
+
+.bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: baseline;
+}
+
+.priceSymbol {
+  font-size: $font-size-sm;
+  color: $color-price;
+  font-weight: $font-weight-semibold;
+}
+
+.price {
+  font-size: $font-size-xl;
+  color: $color-price;
+  font-weight: $font-weight-bold;
+}
+
+.sales {
+  margin-left: $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-text-disabled;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+}
+
+.addBtn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: $radius-round;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.85;
+    transform: scale(0.95);
+  }
+}
+
+.addText {
+  font-size: 36rpx;
+  color: $color-text-white;
+  line-height: 1;
+}
+
+.soldOutBtn {
+  height: 56rpx;
+  padding: 0 $spacing-md;
+  border-radius: $radius-button;
+  background: $color-bg-hover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soldOutBtnText {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}

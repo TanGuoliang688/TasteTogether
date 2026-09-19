@@ -1,0 +1,162 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-page;
+}
+
+.filters {
+  display: flex;
+  padding: $spacing-md $page-padding;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.filterItem {
+  flex: 1;
+  height: 64rpx;
+  border-radius: $radius-button;
+  background: $color-bg-card;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+}
+
+.filterItemActive {
+  background: $color-primary;
+}
+
+.filterText {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.filterTextActive {
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  padding: 0 $page-padding $spacing-md;
+}
+
+.empty {
+  padding: 128rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.emptyText {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.orderCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+}
+
+.orderHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1rpx solid $color-divider;
+}
+
+.orderNo {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.orderStatus {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.statusPending {
+  color: $color-warning;
+}
+
+.statusCompleted {
+  color: $color-success;
+}
+
+.statusCancelled {
+  color: $color-text-tertiary;
+}
+
+.orderBody {
+  padding: $spacing-sm 0;
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-xs 0;
+}
+
+.orderItemName {
+  flex: 1;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.orderItemQty {
+  margin-left: $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.orderItemPrice {
+  margin-left: $spacing-md;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+.orderFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: $spacing-sm;
+  border-top: 1rpx solid $color-divider;
+}
+
+.tableNo {
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+}
+
+.orderTotalWrap {
+  display: flex;
+  align-items: baseline;
+}
+
+.orderTotalLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.orderTotalPrice {
+  margin-left: $spacing-sm;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-price;
+}
+
+.orderTime {
+  display: block;
+  margin-top: $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-text-disabled;
+  text-align: right;
+}

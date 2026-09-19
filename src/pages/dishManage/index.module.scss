@@ -1,0 +1,229 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-page;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $page-padding;
+  flex-shrink: 0;
+}
+
+.total {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+}
+
+.addBtn {
+  height: 64rpx;
+  padding: 0 $spacing-lg;
+  border-radius: $radius-button;
+  background: $color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.addBtnText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.catBtn {
+  height: 64rpx;
+  padding: 0 $spacing-lg;
+  border-radius: $radius-button;
+  background: $color-tag-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-sm;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.catBtnText {
+  font-size: $font-size-md;
+  color: $color-tag-text;
+  font-weight: $font-weight-medium;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  padding: 0 $page-padding;
+}
+
+.section {
+  margin-bottom: $spacing-md;
+}
+
+.sectionTitle {
+  display: block;
+  margin: $spacing-sm 0;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  font-weight: $font-weight-semibold;
+}
+
+.dishRow {
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-card;
+  border-radius: $radius-md;
+  padding: $spacing-sm;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-sm;
+}
+
+.dishMain {
+  display: flex;
+  align-items: center;
+}
+
+.dishImage {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+}
+
+.dishInfo {
+  flex: 1;
+  margin-left: $spacing-md;
+  min-width: 0;
+}
+
+.dishNameRow {
+  display: flex;
+  align-items: center;
+}
+
+.dishName {
+  display: block;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.badgeSoldOut,
+.badgeOff {
+  margin-left: $spacing-xs;
+  font-size: $font-size-xs;
+  padding: 4rpx 12rpx;
+  border-radius: $radius-xs;
+  flex-shrink: 0;
+}
+
+.badgeSoldOut {
+  color: $color-error;
+  background: rgba(245, 63, 63, 0.1);
+}
+
+.badgeOff {
+  color: $color-text-tertiary;
+  background: $color-bg-hover;
+}
+
+.dishPrice {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-md;
+  color: $color-price;
+  font-weight: $font-weight-semibold;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  margin-top: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 2rpx solid $color-divider;
+}
+
+.switchItem {
+  display: flex;
+  align-items: center;
+  margin-right: $spacing-xl;
+}
+
+.switchLabel {
+  margin-right: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: $spacing-sm;
+}
+
+.editBtn,
+.deleteBtn {
+  height: 56rpx;
+  padding: 0 $spacing-md;
+  border-radius: $radius-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.editBtn {
+  background: $color-tag-bg;
+  margin-right: $spacing-sm;
+}
+
+.editText {
+  font-size: $font-size-sm;
+  color: $color-tag-text;
+}
+
+.deleteBtn {
+  background: rgba(245, 63, 63, 0.1);
+}
+
+.deleteText {
+  font-size: $font-size-sm;
+  color: $color-error;
+}
+
+.empty {
+  padding: 128rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.emptyText {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.listBottom {
+  height: 24rpx;
+}

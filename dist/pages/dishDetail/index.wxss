@@ -1,0 +1,180 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/pages/dishDetail/index.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.index-module__page___POs9F {
+  min-height: 100vh;
+  background: #f7f4ef;
+  padding-bottom: 200rpx;
+}
+
+.index-module__loading___CujaA {
+  height: 100vh;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.index-module__loadingText___rDcJU {
+  font-size: 28rpx;
+  color: #86909c;
+}
+
+.index-module__image___EcLPN {
+  width: 100%;
+  height: 560rpx;
+}
+
+.index-module__body___S_MrP {
+  background: #ffffff;
+  margin: -32rpx 32rpx 0;
+  position: relative;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  -webkit-box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+          box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.index-module__titleRow___TtrgE {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.index-module__name___LzkMq {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #1d2129;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 24rpx;
+}
+
+.index-module__priceWrap___YSZUX {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.index-module__priceSymbol___z0eQ6 {
+  font-size: 28rpx;
+  color: #ff4d2e;
+  font-weight: 600;
+}
+
+.index-module__price___LsOIg {
+  font-size: 40rpx;
+  color: #ff4d2e;
+  font-weight: 700;
+}
+
+.index-module__tags___AeBt6 {
+  margin-top: 24rpx;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.index-module__tag___bixzy {
+  font-size: 22rpx;
+  color: #ff6b35;
+  background: #fff1ec;
+  border-radius: 4rpx;
+  padding: 6rpx 16rpx;
+  margin-right: 16rpx;
+}
+
+.index-module__desc___p3Sfd {
+  display: block;
+  margin-top: 32rpx;
+  font-size: 28rpx;
+  color: #4e5969;
+  line-height: 1.5;
+}
+
+.index-module__sales___dcBLL {
+  display: block;
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #86909c;
+}
+
+.index-module__footer___S2IoK {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 24rpx 32rpx;
+  background: #ffffff;
+  -webkit-box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.index-module__qtyBox___pGbzX {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.index-module__qtyLabel___ENnAu {
+  margin-right: 24rpx;
+  font-size: 28rpx;
+  color: #4e5969;
+}
+
+.index-module__addBtn___Zhw41 {
+  height: 80rpx;
+  padding: 0 48rpx;
+  border-radius: 48rpx;
+  background: #ff6b35;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.index-module__addBtn___Zhw41:active {
+  opacity: 0.9;
+  -webkit-transform: scale(0.98);
+      -ms-transform: scale(0.98);
+          transform: scale(0.98);
+}
+
+.index-module__addText___edxtT {
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: 600;
+}

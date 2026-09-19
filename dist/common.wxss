@@ -1,0 +1,48 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[0].use[4]!./src/components/QuantityStepper/index.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.index-module__stepper___tDQJS {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.index-module__btn___QPOHD {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  border: 2rpx solid #ff6b35;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.index-module__btn___QPOHD:active {
+  opacity: 0.8;
+}
+
+.index-module__btnMinus___lG1wG,
+.index-module__btnPlus___vT90b {
+  font-size: 32rpx;
+  color: #ff6b35;
+  line-height: 1;
+}
+
+.index-module__value___Vl0JS {
+  min-width: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1d2129;
+}
