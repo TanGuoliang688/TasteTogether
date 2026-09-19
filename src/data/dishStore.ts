@@ -1,4 +1,8 @@
+import Taro from '@tarojs/taro';
 import { Category, Dish } from '@/types/menu';
+
+const DISH_KEY = '__DISHES__';
+const CATEGORY_KEY = '__CATEGORIES__';
 
 export interface DishUpsert {
   id?: string;
@@ -18,7 +22,7 @@ export interface CategoryUpsert {
   sort?: number;
 }
 
-let categories: Category[] = [
+const defaultCategories: Category[] = [
   { id: 'c1', name: '招牌热菜', sort: 1 },
   { id: 'c2', name: '凉菜', sort: 2 },
   { id: 'c3', name: '主食', sort: 3 },
@@ -26,7 +30,7 @@ let categories: Category[] = [
   { id: 'c5', name: '饮品甜点', sort: 5 },
 ];
 
-let dishes: Dish[] = [
+const defaultDishes: Dish[] = [
   { id: 'd1', categoryId: 'c1', name: '招牌红烧肉', price: 48, image: 'https://picsum.photos/id/292/300/300', description: '肥而不腻，入口即化，选用优质五花肉慢火炖制。', sales: 1200, tags: ['招牌', '热销'] },
   { id: 'd2', categoryId: 'c1', name: '糖醋里脊', price: 38, image: 'https://picsum.photos/id/312/300/300', description: '外酥里嫩，酸甜可口，经典家常味道。', sales: 986, tags: ['人气'] },
   { id: 'd3', categoryId: 'c1', name: '宫保鸡丁', price: 32, image: 'https://picsum.photos/id/326/300/300', description: '鸡肉滑嫩，花生香脆，微辣鲜香。', sales: 1102, tags: ['微辣'] },
@@ -43,6 +47,29 @@ let dishes: Dish[] = [
   { id: 'd14', categoryId: 'c5', name: '冰镇酸梅汤', price: 10, image: 'https://picsum.photos/id/431/300/300', description: '生津止渴，酸甜冰爽，解腻神器。', sales: 520 },
   { id: 'd15', categoryId: 'c5', name: '红豆双皮奶', price: 14, image: 'https://picsum.photos/id/570/300/300', description: '奶香浓郁，红豆绵密，入口即化。', sales: 350 },
 ];
+
+function loadFromStorage<T>(key: string, defaults: T[]): T[] {
+  try {
+    const stored = Taro.getStorageSync(key);
+    if (stored && Array.isArray(stored)) {
+      return stored;
+    }
+  } catch (e) {
+    console.warn(`[dishStore] load ${key} from storage failed:`, e);
+  }
+  return defaults;
+}
+
+function persistCategories() {
+  try { Taro.setStorageSync(CATEGORY_KEY, categories); } catch (e) { /* ignore */ }
+}
+
+function persistDishes() {
+  try { Taro.setStorageSync(DISH_KEY, dishes); } catch (e) { /* ignore */ }
+}
+
+let categories: Category[] = loadFromStorage(CATEGORY_KEY, defaultCategories);
+let dishes: Dish[] = loadFromStorage(DISH_KEY, defaultDishes);
 
 export function getCategories(): Category[] {
   return [...categories].sort((a, b) => a.sort - b.sort);
@@ -69,6 +96,7 @@ export function saveDish(input: DishUpsert): Dish {
       if (input.onSale !== undefined) updated.onSale = input.onSale;
       if (input.soldOut !== undefined) updated.soldOut = input.soldOut;
       dishes = dishes.map((d, i) => (i === idx ? updated : d));
+      persistDishes();
       return updated;
     }
   }
@@ -81,11 +109,13 @@ export function saveDish(input: DishUpsert): Dish {
     soldOut: input.soldOut ?? false,
   };
   dishes = [dish, ...dishes];
+  persistDishes();
   return dish;
 }
 
 export function deleteDish(id: string): void {
   dishes = dishes.filter((d) => d.id !== id);
+  persistDishes();
 }
 
 export function updateDishStatus(
@@ -98,6 +128,7 @@ export function updateDishStatus(
   if (data.onSale !== undefined) updated.onSale = data.onSale;
   if (data.soldOut !== undefined) updated.soldOut = data.soldOut;
   dishes = dishes.map((d, i) => (i === idx ? updated : d));
+  persistDishes();
   return updated;
 }
 
@@ -111,6 +142,7 @@ export function saveCategory(input: CategoryUpsert): Category {
         sort: input.sort ?? categories[idx].sort,
       };
       categories = categories.map((c, i) => (i === idx ? updated : c));
+      persistCategories();
       return updated;
     }
   }
@@ -123,6 +155,7 @@ export function saveCategory(input: CategoryUpsert): Category {
     sort: input.sort ?? maxSort + 1,
   };
   categories = [...categories, category];
+  persistCategories();
   return category;
 }
 
@@ -131,6 +164,7 @@ export function deleteCategory(id: string): void {
     throw new Error('该分类下还有菜品，无法删除');
   }
   categories = categories.filter((c) => c.id !== id);
+  persistCategories();
 }
 
 export function updateCategorySort(id: string, sort: number): Category | undefined {
@@ -138,5 +172,6 @@ export function updateCategorySort(id: string, sort: number): Category | undefin
   if (idx < 0) return undefined;
   const updated: Category = { ...categories[idx], sort };
   categories = categories.map((c, i) => (i === idx ? updated : c));
+  persistCategories();
   return updated;
 }

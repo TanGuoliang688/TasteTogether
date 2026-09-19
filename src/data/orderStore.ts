@@ -1,6 +1,9 @@
+import Taro from '@tarojs/taro';
 import { Order, OrderStatus } from '@/types/order';
 
-let orders: Order[] = [
+const STORAGE_KEY = '__ORDERS__';
+
+const defaultOrders: Order[] = [
   {
     id: 'seed_1',
     orderNo: 'NO20260901001',
@@ -27,8 +30,31 @@ let orders: Order[] = [
   },
 ];
 
+function loadOrders(): Order[] {
+  try {
+    const stored = Taro.getStorageSync(STORAGE_KEY);
+    if (stored && Array.isArray(stored)) {
+      return stored;
+    }
+  } catch (e) {
+    console.warn('[orderStore] load from storage failed:', e);
+  }
+  return defaultOrders;
+}
+
+function persistOrders(orders: Order[]) {
+  try {
+    Taro.setStorageSync(STORAGE_KEY, orders);
+  } catch (e) {
+    console.warn('[orderStore] persist to storage failed:', e);
+  }
+}
+
+let orders: Order[] = loadOrders();
+
 export function saveOrder(order: Order) {
   orders = [order, ...orders];
+  persistOrders(orders);
 }
 
 export function listOrders(status?: OrderStatus): Order[] {

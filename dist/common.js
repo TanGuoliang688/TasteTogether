@@ -131,11 +131,16 @@ function deleteDishMock(data) {
 /* harmony export */   "updateDishStatus": function() { return /* binding */ updateDishStatus; }
 /* harmony export */ });
 /* unused harmony export getCategories */
-/* harmony import */ var D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/@tarojs/taro/index.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var categories = [{
+
+var DISH_KEY = '__DISHES__';
+var CATEGORY_KEY = '__CATEGORIES__';
+var defaultCategories = [{
   id: 'c1',
   name: '招牌热菜',
   sort: 1
@@ -156,7 +161,7 @@ var categories = [{
   name: '饮品甜点',
   sort: 5
 }];
-var dishes = [{
+var defaultDishes = [{
   id: 'd1',
   categoryId: 'c1',
   name: '招牌红烧肉',
@@ -284,8 +289,31 @@ var dishes = [{
   description: '奶香浓郁，红豆绵密，入口即化。',
   sales: 350
 }];
+function loadFromStorage(key, defaults) {
+  try {
+    var stored = _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().getStorageSync(key);
+    if (stored && Array.isArray(stored)) {
+      return stored;
+    }
+  } catch (e) {
+    console.warn("[dishStore] load ".concat(key, " from storage failed:"), e);
+  }
+  return defaults;
+}
+function persistCategories() {
+  try {
+    _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().setStorageSync(CATEGORY_KEY, categories);
+  } catch (e) {/* ignore */}
+}
+function persistDishes() {
+  try {
+    _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().setStorageSync(DISH_KEY, dishes);
+  } catch (e) {/* ignore */}
+}
+var categories = loadFromStorage(CATEGORY_KEY, defaultCategories);
+var dishes = loadFromStorage(DISH_KEY, defaultDishes);
 function getCategories() {
-  return (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(categories).sort(function (a, b) {
+  return (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(categories).sort(function (a, b) {
     return a.sort - b.sort;
   });
 }
@@ -310,41 +338,45 @@ function saveDish(input) {
       return d.id === input.id;
     });
     if (idx >= 0) {
-      var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, dishes[idx]), payload);
+      var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])({}, dishes[idx]), payload);
       if (input.onSale !== undefined) updated.onSale = input.onSale;
       if (input.soldOut !== undefined) updated.soldOut = input.soldOut;
       dishes = dishes.map(function (d, i) {
         return i === idx ? updated : d;
       });
+      persistDishes();
       return updated;
     }
   }
-  var dish = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({
+  var dish = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])({
     id: "d_".concat(Date.now())
   }, payload), {}, {
     sales: 0,
     onSale: (_input$onSale = input.onSale) !== null && _input$onSale !== void 0 ? _input$onSale : true,
     soldOut: (_input$soldOut = input.soldOut) !== null && _input$soldOut !== void 0 ? _input$soldOut : false
   });
-  dishes = [dish].concat((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(dishes));
+  dishes = [dish].concat((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(dishes));
+  persistDishes();
   return dish;
 }
 function deleteDish(id) {
   dishes = dishes.filter(function (d) {
     return d.id !== id;
   });
+  persistDishes();
 }
 function updateDishStatus(id, data) {
   var idx = dishes.findIndex(function (d) {
     return d.id === id;
   });
   if (idx < 0) return undefined;
-  var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, dishes[idx]);
+  var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])({}, dishes[idx]);
   if (data.onSale !== undefined) updated.onSale = data.onSale;
   if (data.soldOut !== undefined) updated.soldOut = data.soldOut;
   dishes = dishes.map(function (d, i) {
     return i === idx ? updated : d;
   });
+  persistDishes();
   return updated;
 }
 function saveCategory(input) {
@@ -355,17 +387,18 @@ function saveCategory(input) {
     });
     if (idx >= 0) {
       var _input$sort;
-      var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, categories[idx]), {}, {
+      var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])({}, categories[idx]), {}, {
         name: input.name,
         sort: (_input$sort = input.sort) !== null && _input$sort !== void 0 ? _input$sort : categories[idx].sort
       });
       categories = categories.map(function (c, i) {
         return i === idx ? updated : c;
       });
+      persistCategories();
       return updated;
     }
   }
-  var maxSort = categories.length ? Math.max.apply(Math, (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(categories.map(function (c) {
+  var maxSort = categories.length ? Math.max.apply(Math, (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(categories.map(function (c) {
     return c.sort;
   }))) : 0;
   var category = {
@@ -373,7 +406,8 @@ function saveCategory(input) {
     name: input.name,
     sort: (_input$sort2 = input.sort) !== null && _input$sort2 !== void 0 ? _input$sort2 : maxSort + 1
   };
-  categories = [].concat((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(categories), [category]);
+  categories = [].concat((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(categories), [category]);
+  persistCategories();
   return category;
 }
 function deleteCategory(id) {
@@ -385,18 +419,20 @@ function deleteCategory(id) {
   categories = categories.filter(function (c) {
     return c.id !== id;
   });
+  persistCategories();
 }
 function updateCategorySort(id, sort) {
   var idx = categories.findIndex(function (c) {
     return c.id === id;
   });
   if (idx < 0) return undefined;
-  var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, categories[idx]), {}, {
+  var updated = (0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__["default"])({}, categories[idx]), {}, {
     sort: sort
   });
   categories = categories.map(function (c, i) {
     return i === idx ? updated : c;
   });
+  persistCategories();
   return updated;
 }
 
@@ -465,9 +501,13 @@ function login() {
 /* harmony export */   "listOrders": function() { return /* binding */ listOrders; },
 /* harmony export */   "saveOrder": function() { return /* binding */ saveOrder; }
 /* harmony export */ });
-/* harmony import */ var D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/@tarojs/taro/index.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
 
-var orders = [{
+
+var STORAGE_KEY = '__ORDERS__';
+var defaultOrders = [{
   id: 'seed_1',
   orderNo: 'NO20260901001',
   tableNo: 'A03',
@@ -504,8 +544,28 @@ var orders = [{
   status: 'pending',
   createTime: Date.now() - 3600000
 }];
+function loadOrders() {
+  try {
+    var stored = _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().getStorageSync(STORAGE_KEY);
+    if (stored && Array.isArray(stored)) {
+      return stored;
+    }
+  } catch (e) {
+    console.warn('[orderStore] load from storage failed:', e);
+  }
+  return defaultOrders;
+}
+function persistOrders(orders) {
+  try {
+    _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().setStorageSync(STORAGE_KEY, orders);
+  } catch (e) {
+    console.warn('[orderStore] persist to storage failed:', e);
+  }
+}
+var orders = loadOrders();
 function saveOrder(order) {
-  orders = [order].concat((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(orders));
+  orders = [order].concat((0,D_java_workspace_TasteTogether_node_modules_babel_runtime_helpers_esm_toConsumableArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(orders));
+  persistOrders(orders);
 }
 function listOrders(status) {
   if (!status) return orders;
