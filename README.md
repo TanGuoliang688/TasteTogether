@@ -1,4 +1,4 @@
-# TasteTogether - 味来小馆点餐小程序
+# TasteTogether - 拾味成双小程序
 
 一款基于 Taro + React + TypeScript 开发的微信小程序点餐系统，支持顾客在线点餐和商家菜品管理。
 
